@@ -33,7 +33,7 @@ handleSearch = () =>{
     
     let newName = data.name;
     let newWeather = data.weather[0].main;
-    let newTemp = data.main.temp;
+    let newTemp = `${data.main.temp} *F`;
     let newLocation = {
       name: newName,
       weather: newWeather,
