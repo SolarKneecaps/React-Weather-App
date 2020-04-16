@@ -17,7 +17,7 @@ function RainWeather(props){
         <div className = 'container__error'>Invaild City <br/>Please Try Again</div>:
         <div className = 'container__error'>&nbsp;</div>
       }
-      <div className ='container__wrapper'>
+      <div className ='container__wrapper container--rain__wrapper'>
         <i className="fas fa-5x fa-cloud-rain"></i>
         <h1 className ='container__wrapper__content container__wrapper__name'>{props.name}</h1>
         <h1 className ='container__wrapper__content container__wrapper__weather'>{props.weather}</h1>

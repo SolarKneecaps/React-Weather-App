@@ -26,6 +26,27 @@ class App extends React.Component {
     isError: false
   }
 
+  componentDidMount(){
+    Axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Houston&appid=${this.state.apiCode}&units=imperial`)
+    .then(res => res.data)
+    .then(data => {
+      
+      let newName = data.name;
+      let newWeather = data.weather[0].main;
+      let newTemp = `${data.main.temp} *F`;
+      let newLocation = {
+        name: newName,
+        weather: newWeather,
+        temp : newTemp
+        }
+      this.setState({location: newLocation, isError: false})
+    })
+    .catch (err => {
+      this.setState({isError: true})
+      console.log(err)
+    })
+  }
+
 handleSearch = () =>{
   Axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.state.searchText}&appid=${this.state.apiCode}&units=imperial`)
   .then(res => res.data)
