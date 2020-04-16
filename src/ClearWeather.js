@@ -1,9 +1,8 @@
 import React from 'react';
 
 function ClearWeather(props){
-  
     return(
-        <div className = 'container'>
+        <div className = 'container container--clear'>
           <form className ='container__form' onSubmit = {props.handleSubmit} >
             <input 
               className ='container__form__input'

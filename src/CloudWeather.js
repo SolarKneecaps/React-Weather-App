@@ -2,7 +2,7 @@ import React from 'react';
 
 function CloudWeather(props){
     return(
-      <div className = 'container'>
+      <div className = 'container container--cloud'>
       <form className ='container__form' onSubmit = {props.handleSubmit} >
         <input 
           className ='container__form__input'
