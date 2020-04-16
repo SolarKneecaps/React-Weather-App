@@ -1,0 +1,20 @@
+@import './variables';
+@import './mixins';
+
+
+.container{
+    background-image: url(../imgs/clearSky.jpg);
+    background-size: 300%;
+    width: 100vw;
+    height: 100vh;
+    max-width: 600px;
+    animation: bgMove 120s linear 0s infinite normal none;
+    margin: 0 auto;
+    @include Flex-Center(column);
+    font-family: $bodyFont;
+}
+
+@keyframes bgMove {
+    from {background-position: right top;}
+    to {background-position: left bottom;}
+}

@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  background-image: url(../imgs/clearSky.jpg);
+  background-size: 300%;
+  width: 100vw;
+  height: 100vh;
+  max-width: 600px;
+  -webkit-animation: bgMove 120s linear 0s infinite normal none;
+          animation: bgMove 120s linear 0s infinite normal none;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+@-webkit-keyframes bgMove {
+  from {
+    background-position: right top;
+  }
+  to {
+    background-position: left bottom;
+  }
+}
+
+@keyframes bgMove {
+  from {
+    background-position: right top;
+  }
+  to {
+    background-position: left bottom;
+  }
+}
+/*# sourceMappingURL=App.css.map */

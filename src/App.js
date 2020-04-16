@@ -1,10 +1,14 @@
 import React from 'react';
-import './App.css';
+import './styles/App.css';
 import Axios from 'axios';
+import RainWeather from './RainWeather';
+import ClearWeather from './ClearWeather';
+import CloudWeather from './CloudWeather';
+import OtherWeather from './OtherWeather';
 
-//<i class="fas fa-sun"></i>
-//<i class="fas fa-cloud"></i>
-//<i class="fas fa-cloud-rain"></i>
+//<i class="fas fa-sun"></i> clear
+//<i class="fas fa-cloud"></i> clouds
+//<i class="fas fa-cloud-rain"></i> rain
 //<i class="fas fa-cloud-sun-rain"></i>
 //<i class="fas fa-snowflake"></i>
 
@@ -18,15 +22,9 @@ class App extends React.Component {
       name : '',
       weather: '',
       temp: ''
-    }
+    },
+    isError: false
   }
-
-componentDidMount(){
-  Axios.get(`https://api.openweathermap.org/data/2.5/weather?q=college station&appid=${this.state.apiCode}&units=imperial`)
-  .then(res => res.data)
-  .then(data => console.log(data))
-  .catch (err => console.log(err))
-}
 
 handleSearch = () =>{
   Axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.state.searchText}&appid=${this.state.apiCode}&units=imperial`)
@@ -41,9 +39,12 @@ handleSearch = () =>{
       weather: newWeather,
       temp : newTemp
       }
-    this.setState({location: newLocation})
+    this.setState({location: newLocation, isError: false})
   })
-  .catch (err => console.log(err))
+  .catch (err => {
+    this.setState({isError: true})
+    console.log(err)
+  })
 }
 
 handleSubmit = (e) =>{
@@ -53,20 +54,54 @@ handleSubmit = (e) =>{
 }
 
 handleChange = (e) =>{
-  console.log(e.target.value)
   this.setState({searchText: e.target.value});
 }
 
   render(){
+    let {name, weather, temp} = this.state.location;
     return (
       <div className="App">
-        <form  onSubmit = {this.handleSubmit} >
-          <input type ='text' placeholder ='Enter City' onChange = {this.handleChange} value ={this.state.searchText}/>
-          <button>Submit</button>
-        </form>
-        <h1>{this.state.location.name}</h1>
-        <h1>{this.state.location.weather}</h1>
-        <h1>{this.state.location.temp}</h1>
+        {
+          (weather==='Clear')?
+            <ClearWeather 
+              name = {name}
+              weather = {weather}
+              temp = {temp}
+              handleChange = {this.handleChange}
+              value = {this.state.searchText}
+              handleSubmit = {this.handleSubmit}
+              isError = {this.state.isError}
+            />:
+          (weather==='Rain')?
+            <RainWeather
+              name = {name}
+              weather = {weather}
+              temp = {temp}
+              handleChange = {this.handleChange}
+              value = {this.state.searchText}
+              handleSubmit = {this.handleSubmit}
+              isError = {this.state.isError}
+            />:
+          (weather==='Clouds')?
+            <CloudWeather
+              name = {name}
+              weather = {weather}
+              temp = {temp}
+              handleChange = {this.handleChange}
+              value = {this.state.searchText}
+              handleSubmit = {this.handleSubmit}
+              isError = {this.state.isError}
+            />:
+            <OtherWeather
+              name = {name}
+              weather = {weather}
+              temp = {temp}
+              handleChange = {this.handleChange}
+              value = {this.state.searchText}
+              handleSubmit = {this.handleSubmit}
+              isError = {this.state.isError}
+            />
+        }
       </div>
     );
   }
