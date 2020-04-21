@@ -11,12 +11,13 @@
     margin: 0 auto;
     @include Flex(column);
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     &__form{
         font-family: $searchFont;
-        margin-bottom: -1em;
         @include Flex-Center(row);
-        &__input{
+        margin-bottom: 1em;
+        &__input,
+        &__input--error{
             background: black;
             color: white;
             border: none;
@@ -25,10 +26,15 @@
             margin-right: 0.25em;
             border-radius: 5px;
             outline: none;
+        }
+        &__input{
             &:focus,
             &:hover{
                 box-shadow: 0px 0px 5px black;
             }
+        }
+        &__input--error{
+            box-shadow: 0px 0px 15px red;
         }
         &__btn{
             background: none;
@@ -40,14 +46,6 @@
             }
         }
     }
-    &__error{
-        font-family: $searchFont;
-        text-align: center;
-        font-size: 2rem;
-        height: 100px;
-        font-size: 2rem;
-        font-weight: 700;
-    }
     &__wrapper{
         width: 90vw;
         max-width: 500px;
@@ -56,6 +54,7 @@
         background: rgba(black, 0.3);
         padding: 1em 0em;
         box-shadow: 0px 0px 15px black;
+        margin-bottom: 1em;
         &__content{
             padding: 0.15em;
             font-size: 2.5rem;
@@ -78,4 +77,4 @@
 @import './cloudWeather';
 @import './rainWeather';
 @import './otherWeather';
-
+@import './prevWeather';

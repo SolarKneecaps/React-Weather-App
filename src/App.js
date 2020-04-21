@@ -1,17 +1,12 @@
 import React from 'react';
 import './styles/App.css';
 import Axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 import RainWeather from './RainWeather';
 import ClearWeather from './ClearWeather';
 import CloudWeather from './CloudWeather';
 import OtherWeather from './OtherWeather';
-
-//<i class="fas fa-sun"></i> clear
-//<i class="fas fa-cloud"></i> clouds
-//<i class="fas fa-cloud-rain"></i> rain
-//<i class="fas fa-cloud-sun-rain"></i>
-//<i class="fas fa-snowflake"></i>
-
+import PrevWeather from './PrevWeather';
 
 class App extends React.Component {
 
@@ -23,7 +18,12 @@ class App extends React.Component {
       weather: '',
       temp: ''
     },
+    locationSaved: [],
     isError: false
+  }
+
+  componentDidCatch(error, errorInfo){
+    console.log(error, errorInfo);
   }
 
   componentDidMount(){
@@ -59,8 +59,19 @@ handleSearch = () =>{
       name: newName,
       weather: newWeather,
       temp : newTemp
-      }
-    this.setState({location: newLocation, isError: false})
+    }
+    let newestLocationSaved = this.state.locationSaved;
+    if(this.state.locationSaved.length>=3){
+      newestLocationSaved.shift();
+    }
+    this.setState(prevState=>{
+      return{
+        locationSaved: [...newestLocationSaved, prevState.location],
+        location: newLocation,
+        isError: false,
+        searchText: ''
+      } 
+        })
   })
   .catch (err => {
     this.setState({isError: true})
@@ -71,17 +82,28 @@ handleSearch = () =>{
 handleSubmit = (e) =>{
   e.preventDefault();
   this.handleSearch();
-  this.setState({searchText: ''})
+  e.target.reset();
 }
 
 handleChange = (e) =>{
   this.setState({searchText: e.target.value});
 }
 
+handleDelete = (id) =>{
+  console.log(id);
+  let newLocationSaved = this.state.locationSaved;
+  newLocationSaved.splice(id, 1);
+  this.setState({locationSaved: newLocationSaved});
+}
+
   render(){
     let {name, weather, temp} = this.state.location;
     return (
       <div className="App">
+        <div className = "prevWeather--container">
+        {Array.isArray(this.state.locationSaved)&&this.state.locationSaved.map((location, index)=>{
+        return <PrevWeather key = {uuidv4()} name = {location.name} handleDelete = {this.handleDelete} id={index} temp = {location.temp}/>})}
+        </div>
         {
           (weather==='Clear')?
             <ClearWeather 
