@@ -8,7 +8,6 @@
 .container {
   width: 100vw;
   height: 100vh;
-  max-width: 600px;
   -webkit-animation: bgMove 120s linear 0s infinite alternate none;
           animation: bgMove 120s linear 0s infinite alternate none;
   margin: 0 auto;
@@ -42,7 +41,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
 }
 
 .container__form__input, .container__form__input--error {
@@ -73,24 +72,39 @@
 }
 
 .container__form__btn:focus, .container__form__btn:hover {
-  color: white;
+  text-shadow: 0px 0px 10px black;
 }
 
 .container__wrapper {
-  width: 90vw;
-  max-width: 500px;
+  width: 95vw;
+  height: 55vh;
+  max-height: 400px;
+  max-width: 600px;
   font-family: "Montserrat", sans-serif;
   text-align: center;
   background: rgba(0, 0, 0, 0.3);
-  padding: 1em 0em;
+  padding: 0.75em 0em;
   -webkit-box-shadow: 0px 0px 15px black;
           box-shadow: 0px 0px 15px black;
   margin-bottom: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .container__wrapper__content {
   padding: 0.15em;
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   font-weight: 700;
   text-shadow: 0px 0px 5px white;
 }
@@ -177,8 +191,10 @@
 }
 
 .prevWeather--container {
+  width: 95%;
   position: fixed;
-  width: 100vw;
+  left: 50%;
+  margin-left: -47.5%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -209,23 +225,30 @@
       -ms-flex-align: center;
           align-items: center;
   padding: 0.15em;
-  margin: 0.15em 0;
-  width: 90%;
+  margin: 0.25em 0;
+  width: 95%;
   font-family: "Montserrat", sans-serif;
-  background: rgba(211, 211, 211, 0.8);
-  -webkit-box-shadow: 0px 0px 5px black;
-          box-shadow: 0px 0px 5px black;
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
+  color: white;
+  -webkit-box-shadow: 0px 0px 3px black;
+          box-shadow: 0px 0px 3px black;
 }
 
 .prevWeather--container__wrapper:first-child {
   margin: 0.25em 0em 0.15em 0em;
 }
 
+.prevWeather--container__wrapper:hover, .prevWeather--container__wrapper:focus {
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 10px black;
+          box-shadow: 0px 0px 10px black;
+}
+
 .prevWeather--container__wrapper__text {
   font-weight: 800;
   padding: 0.5em;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
 }
 
 .prevWeather--container__wrapper__btn {
@@ -238,11 +261,11 @@
   height: 2em;
   color: black;
   background: rgba(255, 0, 0, 0.9);
-  -webkit-box-shadow: 0px 0px 3px black;
-          box-shadow: 0px 0px 3px black;
 }
 
 .prevWeather--container__wrapper__btn:hover, .prevWeather--container__wrapper__btn:focus, .prevWeather--container__wrapper__btn:active {
-  background: rgba(204, 0, 0, 0.9);
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 10px black;
+          box-shadow: 0px 0px 10px black;
 }
 /*# sourceMappingURL=App.css.map */

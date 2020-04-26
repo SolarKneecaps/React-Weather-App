@@ -6,7 +6,7 @@
 .container{
     width: 100vw;
     height: 100vh;
-    max-width: 600px;
+    //max-width: 600px;
     animation: bgMove 120s linear 0s infinite alternate none;
     margin: 0 auto;
     @include Flex(column);
@@ -15,7 +15,7 @@
     &__form{
         font-family: $searchFont;
         @include Flex-Center(row);
-        margin-bottom: 1em;
+        margin-bottom: 1.5em;
         &__input,
         &__input--error{
             background: black;
@@ -42,22 +42,25 @@
             outline: none;
             &:focus,
             &:hover{
-                color: white;
+                text-shadow: 0px 0px 10px black;
             }
         }
     }
     &__wrapper{
-        width: 90vw;
-        max-width: 500px;
+        width: 95vw;
+        height: 55vh;
+        max-height: 400px;
+        max-width: 600px;
         font-family: $bodyFont;
         text-align: center;
         background: rgba(black, 0.3);
-        padding: 1em 0em;
+        padding: 0.75em 0em;
         box-shadow: 0px 0px 15px black;
         margin-bottom: 1em;
+        @include Flex-Center(column);
         &__content{
             padding: 0.15em;
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             font-weight: 700;
             text-shadow: 0px 0px 5px white;
         }

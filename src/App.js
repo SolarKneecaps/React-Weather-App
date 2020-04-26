@@ -19,7 +19,7 @@ class App extends React.Component {
       temp: ''
     },
     locationSaved: [],
-    isError: false
+    isError: false,
   }
 
   componentDidCatch(error, errorInfo){
@@ -89,11 +89,23 @@ handleChange = (e) =>{
   this.setState({searchText: e.target.value});
 }
 
-handleDelete = (id) =>{
-  console.log(id);
+handleDelete = (id, e) =>{
+  e.stopPropagation();
   let newLocationSaved = this.state.locationSaved;
   newLocationSaved.splice(id, 1);
   this.setState({locationSaved: newLocationSaved});
+}
+
+handleClick = (id) =>{
+  let clickedWeather = this.state.locationSaved[id];
+  let currentWeather = this.state.location;
+  let currentPrev = this.state.locationSaved;
+  currentPrev.splice(id,1)
+  currentPrev.push(currentWeather);
+  console.log(currentPrev);
+  this.setState({location: clickedWeather, locationSaved: currentPrev})
+
+
 }
 
   render(){
@@ -102,7 +114,13 @@ handleDelete = (id) =>{
       <div className="App">
         <div className = "prevWeather--container">
         {Array.isArray(this.state.locationSaved)&&this.state.locationSaved.map((location, index)=>{
-        return <PrevWeather key = {uuidv4()} name = {location.name} handleDelete = {this.handleDelete} id={index} temp = {location.temp}/>})}
+        return <PrevWeather 
+                  key = {uuidv4()} 
+                  name = {location.name} 
+                  handleDelete = {this.handleDelete} 
+                  handleClick = {this.handleClick}
+                  id={index} 
+                  temp = {location.temp}/>})}
         </div>
         {
           (weather==='Clear')?
